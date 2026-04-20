@@ -4,7 +4,7 @@
 { ... }:
 {
   # Niri output configuration for the built-in display.
-  xdg.configFile."niri/config.kdl".source = ../../config/niri/config.kdl;
+  # xdg.configFile."niri/config.kdl".source = ../../config/niri/config.kdl;
 
   # Waybar geometry override for 2560x1600.
   # If waybar config needs per-host values beyond what CSS handles,
