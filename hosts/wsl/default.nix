@@ -7,7 +7,6 @@
   imports = [
     ../../modules/nixos/base.nix
     ../../modules/nixos/nix.nix
-    ../../modules/nixos/network.nix
   ];
 
   # Key WSL settings
