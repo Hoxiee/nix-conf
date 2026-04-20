@@ -27,7 +27,7 @@ wsl-switch:
 
 # Check all configurations
 check:
-    nix flake check --show-trace
+    nix flake check
 
 # Build configuration for specific host
 build hostname:

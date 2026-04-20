@@ -38,8 +38,14 @@ echo ""
 bold "=== NixOS configuration installer ==="
 echo ""
 
-USERNAME=$(prompt "Username" "hoshi")
-FULL_NAME=$(prompt "Full name" "$USERNAME")
+ USERNAME=$(prompt "Username" "hoshi")
+ FULL_NAME=$(prompt "Full name" "$USERNAME")
+ PASSWORD=$(prompt "Password" "")
+
+ if [[ -z "$PASSWORD" ]]; then
+     red "ERROR: Password cannot be empty."
+     exit 1
+ fi
 
 echo ""
 echo "Available hosts:"
@@ -63,14 +69,15 @@ if [[ "$GPU" != "amd" && "$GPU" != "nvidia" ]]; then
     exit 1
 fi
 
-# ── Summary ───────────────────────────────────────────────────────────────────
-echo ""
-bold "Configuration summary:"
-echo "  Username : $USERNAME"
-echo "  Full name: $FULL_NAME"
-echo "  Hostname : $HOSTNAME"
-echo "  GPU      : $GPU"
-echo ""
+ # ── Summary ───────────────────────────────────────────────────────────────────
+ echo ""
+ bold "Configuration summary:"
+ echo "  Username : $USERNAME"
+ echo "  Full name: $FULL_NAME"
+ echo "  Hostname : $HOSTNAME"
+ echo "  GPU      : $GPU"
+ echo "  Password : ********"
+ echo ""
 
 if ! confirm "Proceed with installation?"; then
     yellow "Aborted."
@@ -101,10 +108,16 @@ if ! grep -q "gpu/${GPU}.nix" "$HOST_NIX"; then
     yellow "Verify GPU module import manually before rebuilding."
 fi
 
-# ── Build and switch ──────────────────────────────────────────────────────────
-echo ""
-bold "Running nixos-rebuild switch..."
-sudo nixos-rebuild switch --flake "$REPO_DIR#$HOSTNAME"
+ # ── Build and switch ──────────────────────────────────────────────────────────
+ echo ""
+ bold "Running nixos-rebuild switch..."
+ sudo nixos-rebuild switch --flake "$REPO_DIR#$HOSTNAME"
 
-echo ""
-green "✓ Installation complete. Reboot recommended."
+ # ── Set user password ──────────────────────────────────────────────────────────
+ echo ""
+ bold "Setting user password..."
+ echo "$USERNAME:$PASSWORD" | sudo chpasswd
+ green "✓ User password set"
+
+ echo ""
+ green "✓ Installation complete. Reboot recommended."

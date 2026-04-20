@@ -9,6 +9,12 @@
     ../../modules/nixos/audio.nix
     ../../modules/nixos/niri.nix
     ../../modules/nixos/sddm.nix
+    ../../modules/nixos/fonts.nix
+    ../../modules/nixos/sudo.nix
+    ../../modules/nixos/locale.nix
+    ../../modules/nixos/firmware.nix
+    ../../modules/nixos/kernel.nix
+    
     ../../modules/nixos/gpu/nvidia.nix
 
     # ../../modules/nixos/features/flatpak.nix
@@ -20,7 +26,7 @@
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.fullName;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
     shell = pkgs.zsh;
   };
 
