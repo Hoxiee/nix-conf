@@ -1,12 +1,7 @@
 # Home-Manager overrides specific to the WSL host.
 # Import order: users/<username>/default.nix → this file.
 # Here we disable everything that requires a display /DE, and add WSL-specifics.
-{
-  settings,
-  pkgs,
-  lib,
-  ...
-}:
+{ settings, pkgs, lib, ... }:
 {
   # Disable modules that depend on Wayland/X11 if they are in default.nix
   # For example:

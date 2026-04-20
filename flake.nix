@@ -17,16 +17,14 @@
     };
   };
 
-  outputs =
-    inputs@{ flake-parts, ... }:
+  outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
-      perSystem =
-        { pkgs, ... }:
-        {
-          formatter = pkgs.nixfmt;
-        };
+      perSystem = { pkgs, ... }:
+      {
+        formatter = pkgs.nixfmt-tree;
+      };
 
       imports = [ ./parts/nixos.nix ];
     };

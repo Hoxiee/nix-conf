@@ -1,12 +1,6 @@
 # Desktop host assembly — Ryzen 5 7500F + RTX 4070 Super.
 # Only host-specific values live here. Logic belongs in modules.
-{
-  inputs,
-  settings,
-  pkgs,
-  lib,
-  ...
-}:
+{ inputs, settings, pkgs, lib, ... }:
 {
   imports = [
     ./hardware.nix # generated on machine, not in repo. DO NOT REMOVE.
@@ -26,12 +20,7 @@
   users.users.${settings.username} = {
     isNormalUser = true;
     description = settings.fullName;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "audio"
-    ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     shell = pkgs.zsh;
   };
 

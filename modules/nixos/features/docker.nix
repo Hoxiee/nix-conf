@@ -1,11 +1,6 @@
 # Docker — opt-in per host via modules.docker.enable.
 # Default mode: rootless. Safer for multi-user deployments.
-{
-  config,
-  lib,
-  settings,
-  ...
-}:
+{ config, lib, settings, ... }:
 {
   options.modules.docker = {
     enable = lib.mkEnableOption "Docker";
