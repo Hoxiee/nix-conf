@@ -80,6 +80,8 @@ This runs:
 Manual steps:
 3. Both `docs/` overviews updated if structure changed
 
+**Important:** Only run checks after making real changes. Do not run `just check` repeatedly without modifying code.
+
 ## Documentation
 
 `docs/English/overview.md` and `docs/Russian/overview.md` stay in sync.

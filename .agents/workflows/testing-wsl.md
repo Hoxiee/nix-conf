@@ -60,9 +60,12 @@ If any step fails:
 
 1. STOP immediately
 2. DO NOT attempt random fixes
-3. Inspect the error
-4. Fix the root cause
-5. Re-run from step 1
+3. DO NOT run checks repeatedly without making changes
+4. Inspect the error
+5. Fix the root cause
+6. Re-run from step 1
+
+**Important:** Only run `just wsl-check` after making real changes. Do not run it repeatedly without modifying code.
 
 ---
 

@@ -44,6 +44,8 @@ Common commands:
 - `just fmt` — format all Nix files
 - `just pre-commit` — run pre-commit checklist
 
+**Important:** Only run checks after making real changes. Do not run `just check` repeatedly without modifying code.
+
 NEVER run nix commands directly. Always use `just`.
 
 ---
