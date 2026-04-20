@@ -10,23 +10,22 @@ Complexity is a cost — earn it or don't introduce it.
 
 ```
 dotfiles/
-├── flake.nix                  # Entry point. Keep it minimal.
+├── flake.nix                  # Entry point.
 ├── flake.lock                 # Never edit manually.
-├── install.sh                 # One-click installer. Bash only. Under 100 lines.
+├── install.sh                 # One-click installer.
 ├── settings.nix               # Global settings
 ├── parts/
-│   ├── nixos.nix              # nixosConfigurations via flake-parts
-│   └── home.nix               # homeConfigurations (standalone HM, if ever needed)
+│   └── nixos.nix              # nixosConfigurations via flake-parts
 ├── hosts/
 │   ├── wsl/
-│   │   ├── default.nix        # WSL Host assembly: configuration for testing in WSL
-│   │   ├── flake.nix          # flake.nix, which is used to run in a specific WSL environment
+│   │   ├── default.nix        # WSL Host assembly
+│   │   ├── flake.nix          # WSL-specific flake
 │   │   └── flake.lock         # Never edit manually
 │   ├── laptop/
-│   │   ├── default.nix        # Host assembly: imports + host-specific options
+│   │   ├── default.nix        # Host assembly
 │   │   └── hardware.nix       # NOT IN REPO — generated on target machine
 │   └── desktop/
-│       ├── default.nix
+│       ├── default.nix        # Host assembly
 │       └── hardware.nix       # NOT IN REPO — generated on target machine
 ├── modules/
 │   ├── nixos/                 # System-level modules (require root)
@@ -65,10 +64,12 @@ dotfiles/
 │       ├── laptop.nix         # Laptop-specific HM overrides
 │       ├── desktop.nix        # Desktop-specific HM overrides
 │       └── wsl.nix            # WSL-specific HM overrides
-└── docs/
-    ├── English/overview.md
-    └── Russian/overview.md
+└── docs/                      # User-related documents, organized into clear categories
+    ├── English/*
+    └── Russian/*
 ```
+
+If necessary, use the `tree` for optimal navigation through the file structure.
 
 ## Boundaries
 
@@ -79,7 +80,7 @@ drivers, services, kernel, session, fonts, base packages.
 app configs, dotfile links, shell, environment variables.
 
 **`hosts/`** — assembly point for a machine. Imports modules, sets host-specific
-options. No logic lives here, only wiring.
+options. No logic lives here, only wiring (Exception: WSL environment).
 
 **`users/`** — assembly point for a user on a specific host. Host-specific HM
 overrides (scaling, monitor layout) live in `laptop.nix` / `desktop.nix` / `wsl.nix`.
