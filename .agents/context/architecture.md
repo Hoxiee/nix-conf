@@ -31,7 +31,7 @@ dotfiles/
 ├── modules/
 │   ├── nixos/                 # System-level modules (require root)
 │   │   ├── base.nix
-│   │   ├── nuix.nix           # Nix features
+│   │   ├── nix.nix            # Nix features
 │   │   ├── boot.nix
 │   │   ├── network.nix
 │   │   ├── audio.nix
@@ -40,7 +40,7 @@ dotfiles/
 │   │   ├── sddm.nix
 │   │   ├── features/          # Optional System-level modules
 │   │   │   ├── docker.nix
-│   │   │   └── flatpack.nix
+│   │   │   └── flatpak.nix
 │   │   └── gpu/
 │   │       ├── amd.nix
 │   │       └── nvidia.nix
