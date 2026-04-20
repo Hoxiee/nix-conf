@@ -27,10 +27,12 @@ in
         inputs.home-manager.nixosModules.home-manager
         hmBase
         {
-          home-manager.users.${username} = { imports = [
-            ../users/${username}/default.nix
-            ../users/${username}/laptop.nix
-          ]; };
+          home-manager.users.${username} = {
+            imports = [
+              ../users/${username}/default.nix
+              ../users/${username}/laptop.nix
+            ];
+          };
         }
       ];
     };
@@ -43,10 +45,12 @@ in
         inputs.home-manager.nixosModules.home-manager
         hmBase
         {
-          home-manager.users.${username} = { imports = [
-            ../users/${username}/default.nix
-            ../users/${username}/desktop.nix
-          ]; };
+          home-manager.users.${username} = {
+            imports = [
+              ../users/${username}/default.nix
+              ../users/${username}/desktop.nix
+            ];
+          };
         }
       ];
     };

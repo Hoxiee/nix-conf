@@ -2,7 +2,13 @@
 # No hardware.nix needed: WSL manages the kernel itself.
 # GUI-heavy modules (sddm, niri, gpu) are excluded — use a terminal workflow
 # or X11/Wayland via WSLg if needed.
-{ inputs, settings, pkgs, lib, ... }:
+{
+  inputs,
+  settings,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [
     ../../modules/nixos/nix.nix
@@ -14,7 +20,7 @@
   wsl.defaultUser = settings.username;
 
   # Enable systemd
-  wsl.useWindowsDriver = true;   # Forward the Windows GPU driver to WSL (optional)
+  wsl.useWindowsDriver = true; # Forward the Windows GPU driver to WSL (optional)
 
   # Boot
   boot.isContainer = true;

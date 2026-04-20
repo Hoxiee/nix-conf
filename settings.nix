@@ -4,5 +4,5 @@
 {
   username = "hoshi";
   fullName = "hoshi";
-  systemStateVersion = "25.05";
+  systemStateVersion = "26.05";
 }

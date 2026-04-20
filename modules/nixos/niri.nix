@@ -19,7 +19,10 @@
     ];
     # Route portal requests explicitly — avoids ambiguity when multiple portals are present.
     config.niri = {
-      default = [ "gnome" "wlr" ];
+      default = [
+        "gnome"
+        "wlr"
+      ];
       "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
       "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
     };
@@ -50,15 +53,15 @@
 
   # Packages required for a functional niri session.
   environment.systemPackages = with pkgs; [
-    xwayland-satellite   # XWayland support for legacy X11 apps
-    wl-clipboard         # Wayland clipboard CLI
-    cliphist             # Clipboard history
-    swww                 # Wallpaper daemon
-    wlr-randr            # Output management
-    brightnessctl        # Brightness control (laptop backlight)
-    playerctl            # Media player control
-    libnotify            # notify-send
-    swaylock             # Screen locker
-    swayidle             # Idle daemon
+    xwayland-satellite # XWayland support for legacy X11 apps
+    wl-clipboard # Wayland clipboard CLI
+    cliphist # Clipboard history
+    swww # Wallpaper daemon
+    wlr-randr # Output management
+    brightnessctl # Brightness control (laptop backlight)
+    playerctl # Media player control
+    libnotify # notify-send
+    swaylock # Screen locker
+    swayidle # Idle daemon
   ];
 }

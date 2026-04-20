@@ -1,6 +1,11 @@
 # Docker — opt-in per host via modules.docker.enable.
 # Default mode: rootless. Safer for multi-user deployments.
-{ config, lib, settings, ... }:
+{
+  config,
+  lib,
+  settings,
+  ...
+}:
 {
   options.modules.docker = {
     enable = lib.mkEnableOption "Docker";
@@ -22,7 +27,8 @@
 
     # Add user to docker group only in rootful mode.
     # In rootless mode the socket belongs to the user already.
-    users.users.${settings.username}.extraGroups =
-      lib.mkIf (!config.modules.docker.rootless) [ "docker" ];
+    users.users.${settings.username}.extraGroups = lib.mkIf (!config.modules.docker.rootless) [
+      "docker"
+    ];
   };
 }

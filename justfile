@@ -11,7 +11,7 @@ default:
 
 # Check WSL configuration (WSL only)
 wsl-check:
-    cd hosts/wsl && nix flake check --show-trace
+    git add . && cd hosts/wsl && nix flake check
 
 # Build WSL configuration (WSL only)
 wsl-build:

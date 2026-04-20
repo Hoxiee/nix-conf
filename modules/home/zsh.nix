@@ -17,11 +17,11 @@
     };
 
     shellAliases = {
-      ls  = "eza --icons";
-      ll  = "eza -la --icons --git";
-      lt  = "eza --tree --icons";
+      ls = "eza --icons";
+      ll = "eza -la --icons --git";
+      lt = "eza --tree --icons";
       cat = "bat";
-      cd  = "z";       # zoxide
+      cd = "z"; # zoxide
       vim = "nvim";
     };
 
