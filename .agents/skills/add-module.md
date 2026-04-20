@@ -73,10 +73,10 @@ Import in `users/<username>/default.nix`.
 ## After creating the module
 
 ```bash
-nix build .#nixosConfigurations.laptop.config.system.build.toplevel
-nix build .#nixosConfigurations.desktop.config.system.build.toplevel
-nix flake check
-nix fmt
+just build laptop
+just build desktop
+just check
+just fmt
 ```
 
 All must pass.

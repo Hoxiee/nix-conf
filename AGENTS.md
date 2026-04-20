@@ -19,7 +19,7 @@ You MUST detect the runtime environment before executing any command.
 
 If you are inside WSL:
 
-* You MUST use `./hosts/wsl/flake.nix`
+* You MUST use `just wsl-check` instead of `nix flake check`
 * You MUST follow `.agents/workflows/testing-wsl.md`
 
 Direct link:
@@ -28,6 +28,23 @@ Direct link:
 NEVER run nix flake check or nixos-rebuild from the repository root in WSL.
 
 Doing so is considered a critical error.
+
+---
+
+## Justfile (REQUIRED)
+
+All commands MUST use `just` to avoid mistakes.
+
+Common commands:
+- `just --list` — show all available commands
+- `just check` — check all configurations
+- `just wsl-check` — check WSL configuration (WSL only)
+- `just build <hostname>` — build configuration
+- `just switch <hostname>` — apply configuration
+- `just fmt` — format all Nix files
+- `just pre-commit` — run pre-commit checklist
+
+NEVER run nix commands directly. Always use `just`.
 
 ---
 

@@ -78,8 +78,8 @@ Add the new hostname to the list of valid hostname choices in the prompt.
 ### 8. Verify
 
 ```bash
-nix build .#nixosConfigurations.<hostname>.config.system.build.toplevel
-nix flake check
+just build <hostname>
+just check
 ```
 
 Both must pass before committing.

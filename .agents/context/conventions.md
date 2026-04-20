@@ -2,7 +2,7 @@
 
 ## Nix formatting
 
-- `nix fmt` before every commit — no exceptions
+- `just fmt` before every commit — no exceptions
 - Indentation: 2 spaces
 - Line length: soft limit 100 characters
 - Attribute sets: alphabetical order unless order is semantically significant

@@ -4,19 +4,19 @@
 
 ```bash
 # New machine — run once
-bash install.sh
+just install
 
 # Full rebuild (system + Home Manager)
-sudo nixos-rebuild switch --flake .#<hostname>
+just switch <hostname>
 
 # Build without applying
-sudo nixos-rebuild build --flake .#<hostname>
+just build <hostname>
 
 # Update all flake inputs
-nix flake update
+just update
 
 # Update single input
-nix flake update nixpkgs
+just update-input <input>
 ```
 
 Valid hostnames: `laptop`, `desktop`.
@@ -69,11 +69,16 @@ Summary: two or three sentences, what changed and why.
 
 ## Pre-commit checklist
 
-1. `nix flake check` — no errors
-2. `nix build .#nixosConfigurations.laptop.config.system.build.toplevel` — clean
-3. `nix build .#nixosConfigurations.desktop.config.system.build.toplevel` — clean
-4. `nix fmt` — no diff
-5. Both `docs/` overviews updated if structure changed
+```bash
+just pre-commit
+```
+
+This runs:
+1. `just check` — no errors
+2. `just fmt` — no diff
+
+Manual steps:
+3. Both `docs/` overviews updated if structure changed
 
 ## Documentation
 
@@ -82,3 +87,16 @@ Summary: two or three sentences, what changed and why.
 Each file: one-sentence description, host table, module summary paragraph,
 installer commands. Max 60 lines. No filler.
 Update both whenever structure changes.
+
+## Justfile
+
+All commands MUST use `just` to avoid mistakes.
+
+Common commands:
+- `just --list` — show all available commands
+- `just check` — check all configurations
+- `just wsl-check` — check WSL configuration (WSL only)
+- `just build <hostname>` — build configuration
+- `just switch <hostname>` — apply configuration
+- `just fmt` — format all Nix files
+- `just pre-commit` — run pre-commit checklist

@@ -18,44 +18,37 @@ If unsure — assume WSL.
 
 ## Working directory
 
-All commands MUST be executed from:
+All commands MUST be executed from repository root using `just`.
 
-./hosts/wsl/
-
-NEVER run any flake command from the repository root in WSL.
+NEVER run any flake command directly in WSL. Always use `just`.
 
 ---
 
 ## Allowed commands
 
-### 1. Enter directory
+### 1. Validate flake
 
-cd ./hosts/wsl
-
----
-
-### 2. Validate flake
-
-nix flake check --show-trace
+just wsl-check
 
 ---
 
-### 3. Build configuration
+### 2. Build configuration
 
-nix build .#nixosConfigurations.wsl.config.system.build.toplevel
+just wsl-build
 
 ---
 
-### 4. Apply configuration
+### 3. Apply configuration
 
-sudo nixos-rebuild switch --flake .#wsl
+just wsl-switch
 
 ---
 
 ## Forbidden actions
 
-* Running nix flake check in repo root
-* Running nixos-rebuild outside ./hosts/wsl
+* Running `nix flake check` directly (use `just wsl-check`)
+* Running `nixos-rebuild` directly (use `just wsl-switch`)
+* Running any flake command from repository root without `just`
 * Importing Home Manager modules into NixOS layer
 * Mixing system and home modules
 
@@ -69,7 +62,7 @@ If any step fails:
 2. DO NOT attempt random fixes
 3. Inspect the error
 4. Fix the root cause
-5. Re-run from step 2
+5. Re-run from step 1
 
 ---
 
@@ -78,3 +71,4 @@ If any step fails:
 * WSL uses its own flake entrypoint
 * Root flake is NOT valid for WSL testing
 * Always treat WSL as a separate deployment target
+* Use `just` for all commands to avoid mistakes
