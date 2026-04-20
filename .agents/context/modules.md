@@ -77,7 +77,7 @@ Nerd Fonts declared here under `fonts.packages`. Do not scatter font declaration
 
 Base packages (do not remove without reason):
 `git`, `neovim`, `ripgrep`, `fd`, `bat`, `eza`, `fzf`, `htop`,
-`wget`, `curl`, `unzip`, `zip`, `file`, `which`, `tree`, `jq`
+`wget`, `curl`, `unzip`, `zip`, `file`, `which`, `tree`, `jq`, `just`
 
 ## zsh.nix (home)
 
