@@ -1,19 +1,13 @@
 # Nix settings — flakes, binary cache, garbage collection.
 { ... }:
 {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
     auto-optimise-store = true;
-    trusted-users = [
-      "root"
-      "@wheel"
-    ];
+    trusted-users = [ "root" "@wheel" ];
   };
 
   nix.gc = {

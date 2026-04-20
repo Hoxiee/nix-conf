@@ -19,10 +19,7 @@
     ];
     # Route portal requests explicitly — avoids ambiguity when multiple portals are present.
     config.niri = {
-      default = [
-        "gnome"
-        "wlr"
-      ];
+      default = [ "gnome" "wlr" ];
       "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
       "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
     };
