@@ -65,7 +65,8 @@
           hmBase
           {
             home-manager.users.${username}.imports = [
-              ../../users/${username}/wsl-default.nix
+              ../../modules/home/base.nix
+              ../../modules/home/zsh.nix
               ../../users/${username}/wsl.nix
             ];
           }

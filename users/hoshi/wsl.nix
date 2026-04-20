@@ -18,10 +18,5 @@
     WINDOWS_HOME = "/mnt/c/Users/$USER"; # path to Windows home folder
   };
 
-  # WSL utilities (optional)
-  # home.packages = with pkgs; [
-  #   # wslu has been removed from nixpkgs (project discontinued)
-  # ];
-
   home.stateVersion = settings.systemStateVersion;
 }
