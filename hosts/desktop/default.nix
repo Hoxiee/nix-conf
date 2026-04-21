@@ -5,6 +5,7 @@
   imports = [
     ./hardware.nix # generated on machine, not in repo. DO NOT REMOVE.
     ../../modules/nixos/base.nix
+    ../../modules/NixOS/boot.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/network.nix
     ../../modules/nixos/audio.nix
