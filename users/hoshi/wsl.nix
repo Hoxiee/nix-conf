@@ -12,6 +12,4 @@
   home.sessionVariables = {
     WINDOWS_HOME = "/mnt/c/Users/$USER"; # path to Windows home folder
   };
-
-  home.stateVersion = settings.systemStateVersion;
 }

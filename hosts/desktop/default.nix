@@ -1,37 +1,60 @@
-# Desktop host assembly — Ryzen 5 7500F + RTX 4070 Super.
-# Only host-specific values live here. Logic belongs in modules.
-{ inputs, settings, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
+let
+  username = "hoshi";
+in
 {
   imports = [
-    ./hardware.nix # generated on machine, not in repo. DO NOT REMOVE.
-    ../../modules/nixos/base.nix
-    ../../modules/nixos/nix.nix
-    ../../modules/nixos/network.nix
-    ../../modules/nixos/audio.nix
-    ../../modules/nixos/niri.nix
-    ../../modules/nixos/sddm.nix
-    ../../modules/nixos/fonts.nix
-    ../../modules/nixos/sudo.nix
-    ../../modules/nixos/locale.nix
-    ../../modules/nixos/firmware.nix
-    ../../modules/nixos/kernel.nix
+    ./hardware.nix # Generated on machine. DO NOT REMOVE
     
-    ../../modules/nixos/gpu/nvidia.nix
+    # Common modules
+    ../../modules/core
+    ../../modules/desktop
+    
+    # Hardware section
+    ../../modules/hardware/firmware.nix
+    ../../modules/hardware/gpu/nvidia.nix
 
-    # ../../modules/nixos/features/flatpak.nix
-    # ../../modules/nixos/features/docker.nix
+    # Feature section
+    ../../modules/nixos/features/flatpak.nix
+    ../../modules/nixos/features/docker.nix
+
+    # Home Manager
+    ../../home/common.nix
   ];
 
   networking.hostName = "desktop";
 
-  users.users.${settings.username} = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = settings.fullName;
+    description = ${username};
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
     shell = pkgs.zsh;
   };
 
+  home-manager.users.${username} = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    imports = [
+      ../../users/${username}
+    ];
+
+    
+  };
+
   programs.zsh.enable = true;
 
-  system.stateVersion = settings.systemStateVersion;
+  # Kernel configuration (optional)
+  # kernelPackages = pkgs.linuxPackages_latest;
+
+  system = {
+    # Windows 11's forced auto-updates that cannot be disabled
+    autoUpgrade = {
+      enable = true;
+      allowReboot = false;
+      dates = "weekly";
+    };
+    stateVersion = "25.11";
+  };
 }
+
